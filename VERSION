@@ -1,0 +1,9 @@
+V3release
+date: 2025-11-07
+notes: 
+  - 饼图兼容：自动检测 conic-gradient，非支持环境采用 SVG 环形渲染，保持视觉一致（适配 Safari/Chrome/微信内置浏览器）
+  - 昵称提示遮罩：背景遮罩优化为 rgba(0,0,0,0.18) + blur(1px)，更柔和不抢主画面
+  - 表格列宽：统一“玩家”列 10ch（col-5ch），在汇总表与文本表一致
+
+previous:
+  - V2release (2025-11-07): 时间管理小游戏 · 卡片问答 V2 发布版本

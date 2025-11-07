@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>时间管理小游戏 · 卡片问答</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="night-sky" id="night-sky"></div>
+    <div class="app">
+      <header class="app__header">
+        <h1 class="app__title">时间管理小游戏 · 卡片问答</h1>
+        <nav class="nav">
+          <a href="#home">首页</a>
+          <a href="#game">卡片</a>
+          <a href="#summary">汇总</a>
+        </nav>
+      </header>
+
+      <!-- 首页视图：指针式钟表盘 + 抓娃娃动画 + 玩家进入 -->
+      <section id="view-home" class="panel">
+        <div class="home-hero">
+          <div class="analog-clock" id="analog-clock">
+            <div class="clock-face">
+              <div class="hand hour" id="hand-hour"></div>
+              <div class="hand minute" id="hand-minute"></div>
+              <div class="hand second" id="hand-second"></div>
+              <div class="center-pin"></div>
+            </div>
+          </div>
+          <div class="claw-scene">
+            <div class="claw">
+              <div class="claw-head"></div>
+              <div class="claw-rope"></div>
+              <div class="claw-prong left"></div>
+              <div class="claw-prong right"></div>
+            </div>
+            <div class="box box-1" id="time-box-1"><span class="box-label">时间盒子</span></div>
+            <div class="box box-2" id="time-box-2"><span class="box-label">时间盒子</span></div>
+          </div>
+        </div>
+        <div class="speech-bubble">
+          今天也来抓一抓流走的时间吧
+          <button id="do-grab" type="button" style="margin-left:8px;">抓一下</button>
+        </div>
+        <div class="enter">
+          <input type="text" id="player-name" placeholder="输入你的昵称（例如 Audrey）" />
+          <button id="start-game">开始游戏</button>
+        </div>
+        <p class="hint">点击“开始游戏”进入卡片问答</p>
+      </section>
+
+      <!-- 卡片视图：卡片列表（每张卡是一个题目） -->
+      <section id="view-game" class="panel hidden">
+            <div class="player-info">当前玩家：<span id="current-player">未设置</span><br /><span class="stat">卡片总数：<span id="total-cards">0</span></span><span class="stat">预计用时：<span id="est-time-game">0</span>&thinsp;mins</span></div>
+        <ul id="card-list" class="card-list"></ul>
+      </section>
+
+      <!-- 单卡视图：题目与作答 -->
+      <section id="view-card" class="panel hidden">
+            <div class="player-info">玩家：<span id="current-player-card">未设置</span><br /><span class="stat">卡片总数：<span id="total-cards-card">0</span></span><span class="stat">预计用时：<span id="est-time-card">0</span>&thinsp;mins</span></div>
+        <div id="card-title" class="card-title"></div>
+        <div id="card-desc" class="card-desc"></div>
+        <form id="card-form" class="card-form"></form>
+        <div class="card-actions">
+          <button id="back-to-game" type="button">返回卡片列表</button>
+          <button id="prev-card" type="button">上一张卡片</button>
+          <button id="submit-answer">提交答案</button>
+        </div>
+      </section>
+
+      <!-- 汇总视图：所有玩家的答题结果统计 -->
+      <section id="view-summary" class="panel hidden">
+        <h2>玩家答题汇总</h2>
+        <div class="summary-actions">
+          <button id="export-csv">导出 CSV</button>
+        </div>
+        <div class="summary-table-wrap">
+        <table class="summary-table">
+          <thead id="summary-head"></thead>
+          <tbody id="summary-body"></tbody>
+        </table>
+        </div>
+
+        <!-- 改为按卡片顺序依次显示（与卡片列表一致） -->
+        <div class="summary-section">
+          <h3>按卡片顺序</h3>
+          <div class="summary-table-wrap">
+            <div id="summary-items" class="summary-grid"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 共享/备份：与汇总共用导出导入机制，去掉旧分享模块 -->
+
+      <!-- 全屏提示蒙版 -->
+      <div id="overlay" class="overlay hidden">
+        <div id="overlay-content" class="overlay-content">请输入你的昵称</div>
+      </div>
+
+      <footer class="app__footer"></footer>
+  </div>
+
+    <script src="script.js" defer></script>
+    <script src="autosave.js" defer></script>
+  </body>
+  </html>
